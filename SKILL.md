@@ -29,11 +29,13 @@ Always check the current account before performing account-dependent work:
 "$CLI_BIN" whoami
 ```
 
-Use login only with a supplied username. Omit `--password` so the CLI prompts securely when an interactive terminal is available:
+Use `login` to open the browser and complete sign-in there. The CLI polls for the completed browser session and saves its cookie locally; it never accepts a password as a command-line argument:
 
 ```sh
-"$CLI_BIN" login --username <username>
+"$CLI_BIN" login
 ```
+
+The default wait is five minutes; use `--timeout <seconds>` only when a longer or shorter window is needed.
 
 Log out only when requested; it clears the local Fima session cookie:
 
