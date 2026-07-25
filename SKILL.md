@@ -53,3 +53,15 @@ Do not guess command flags or workflows. First inspect the top-level help, then 
 ```
 
 This includes reimbursement creation and submission, invoice upload, list/detail queries, manager and finance approvals, payment, and rejection. Confirm any action that submits, approves, rejects, pays, or otherwise changes a reimbursement unless the user has already asked for that specific action.
+
+## JSON 参数约定
+
+字段超过两个的命令必须通过 `--json` 传入单个 JSON 对象；先看命令帮助确认必填字段。`create` 的必填字段为 `title`、`amount`、`date`；流程命令的必填字段为 `id`，而 `reject` 还必须包含 `comment`：
+
+```sh
+"$CLI_BIN" create --json '{"title":"客户拜访","amount":280,"date":"2026-07-12"}'
+"$CLI_BIN" manager-approve --json '{"id":1,"operator":"李主管","comment":"同意"}'
+"$CLI_BIN" reject --json '{"id":1,"operator":"李主管","comment":"请补充发票"}'
+```
+
+`list`、`show` 和 `upload` 可继续使用普通参数。
