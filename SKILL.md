@@ -29,7 +29,7 @@ Always check the current account before performing account-dependent work:
 "$CLI_BIN" whoami
 ```
 
-Use `login` to open the browser and complete sign-in there. The CLI polls for the completed browser session and saves its cookie locally; it never accepts a password as a command-line argument:
+Use `login` to open the browser and complete sign-in in its dedicated login dialog. The CLI polls for the completed browser session and saves its cookie locally; it never accepts a password as a command-line argument. When the browser confirms that CLI login is complete, it is safe to close that browser page:
 
 ```sh
 "$CLI_BIN" login
