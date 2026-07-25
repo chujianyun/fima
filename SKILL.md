@@ -1,9 +1,9 @@
 ---
 name: fima
-description: Install and use the Fima finance-reimbursement CLI. Use when Codex needs to check the current Fima account, sign in or out, or work with Fima reimbursement, invoice, approval, rejection, or payment operations.
+description: Manage Fima expense reimbursements. Use when someone needs to check the current Fima account, sign in or out, or create, query, invoice, approve, reject, or simulate payment for reimbursement claims.
 ---
 
-# Fima 财务 CLI
+# Fima 财务报销
 
 Use this Skill to operate the local Fima CLI. The CLI talks to a running Fima Web service; default URL is `http://127.0.0.1:8000`.
 

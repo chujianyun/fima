@@ -1,6 +1,6 @@
-# Fima 财务 CLI Skill
+# Fima 财务报销 Skill
 
-让 Codex 通过本地命令行操作 Fima 财务报销系统：登录、查询报销单、创建报销单、上传发票，以及主管审批、财务审批、驳回和模拟付款。
+这个 Skill 通过本地命令行操作 Fima 财务报销系统：登录、查询报销单、创建报销单、上传发票，以及主管审批、财务审批、驳回和模拟付款。
 
 这个仓库是 **Skill 源码**；实际执行的 CLI 位于关联仓库 [`fima-cli`](../fima-cli)，服务端页面位于 [`fima-web`](../fima-web)。
 
@@ -103,6 +103,6 @@ fima manager-approve -h
 
 | 路径 | 用途 |
 | --- | --- |
-| [`SKILL.md`](SKILL.md) | 给 Codex 使用的行为指令与安全约束 |
+| [`SKILL.md`](SKILL.md) | Skill 的行为指令与安全约束 |
 | [`scripts/ensure_fima_cli.sh`](scripts/ensure_fima_cli.sh) | 安装或定位本地 `fima` CLI |
-| [`agents/openai.yaml`](agents/openai.yaml) | Skill 在 Codex 中的展示配置 |
+| [`agents/openai.yaml`](agents/openai.yaml) | Skill 的展示配置 |

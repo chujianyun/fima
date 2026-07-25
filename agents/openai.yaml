@@ -1,4 +1,4 @@
 interface:
-  display_name: "Fima 财务 CLI"
-  short_description: "一键安装并使用 Fima 报销、审批与付款 CLI 工具"
-  default_prompt: "Use $fima to check the current Fima account and handle a reimbursement task."
+  display_name: "Fima 财务报销"
+  short_description: "处理 Fima 报销、审批与模拟付款事项"
+  default_prompt: "Check the current Fima account and handle a reimbursement task."
