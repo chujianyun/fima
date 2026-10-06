@@ -5,7 +5,7 @@ description: Manage Fima expense reimbursements. Use when someone needs to check
 
 # Fima 财务报销
 
-Use this Skill to operate the local Fima CLI. The CLI talks to a running Fima Web service; default URL is `http://127.0.0.1:8000`.
+Use this Skill to operate the local Fima CLI. The CLI talks to a running Fima Web service. Starting with CLI 1.4.0, there is no default server: configure an address before account or reimbursement operations.
 
 ## Install and verify
 
@@ -19,7 +19,20 @@ CLI_BIN="$("<skill-directory>/scripts/ensure_fima_cli.sh")"
 
 The installer is idempotent. Set `FIMA_CLI_INSTALL_ROOT` to choose a different local checkout. Set `FIMA_CLI_UPDATE=1` only when an explicit refresh of the checked-out CLI is wanted.
 
-If the Fima service is elsewhere, set `FIMA_URL` for the command or add `--url <service-url>` before the subcommand. Do not expose passwords, session files, or cookies in output.
+## Server configuration (CLI 1.4.0+)
+
+Before account-dependent work, inspect `config show`. If no address is configured, ask the user for the server URL or IP:port; do not guess a server. Save the supplied address using:
+
+```sh
+"$CLI_BIN" config set-url <server-url-or-ip:port>
+"$CLI_BIN" config show
+```
+
+Use the same `config set-url` command when the user asks to change servers. An address without a scheme uses HTTP. Configuration persists in `~/.fima/config.json`; `FIMA_CONFIG_FILE` can override this location. Only HTTP/HTTPS addresses are accepted, without credentials, query strings, or fragments.
+
+For a temporary override, set `FIMA_URL` for the command or add `--url <service-url>` before the subcommand. Priority is `--url` > `FIMA_URL` > saved configuration; overrides do not update the file. Session cookies are bound to the server URL. Sign in again for a new server or after upgrading an old session that has no URL binding. Do not expose passwords, session files, or cookies in output.
+
+If the installed CLI is older than 1.4.0, use its documented `--url` option temporarily and explain that persistent configuration requires upgrading; inspect help before issuing `config` commands.
 
 ## Account commands
 

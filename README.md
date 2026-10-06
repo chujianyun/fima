@@ -6,15 +6,26 @@
 
 ## 前置条件
 
-1. 启动 Fima Web 服务（默认地址为 `http://127.0.0.1:8000`）。
+1. 启动 Fima Web 服务，并确定可访问的服务器 URL 或 IP:端口。
 2. 本机需要安装 `git`，首次使用时 Skill 会自动拉取并安装 `fima-cli`。
 
-服务地址不是默认值时，可在命令前设置 `FIMA_URL`，或将 `--url <服务地址>` 放在子命令前：
+CLI 1.4.0 起不再默认连接本机服务。首次使用或更换服务器时保存地址：
+
+```sh
+fima config set-url 127.0.0.1:8000
+fima config show
+```
+
+地址保存到 `~/.fima/config.json`（可用 `FIMA_CONFIG_FILE` 覆盖），重开终端仍有效；未配置时，业务命令会提示设置并退出。支持完整 HTTP/HTTPS URL 或 IP:端口，未写协议时默认 HTTP。更换地址仍使用 `config set-url`。
+
+临时使用其他服务器时，可在命令前设置 `FIMA_URL`，或将 `--url <服务地址>` 放在子命令前：
 
 ```sh
 FIMA_URL=http://127.0.0.1:8000 fima whoami
 fima --url http://127.0.0.1:8000 whoami
 ```
+
+优先级为 `--url` > `FIMA_URL` > 已保存配置；临时覆盖不会改写配置文件。登录会话与服务器地址绑定，更换服务器或升级旧会话后需要重新登录。旧版 CLI 可继续使用 `--url`，持久化配置命令需要升级到 1.4.0 及以上。
 
 ## 安装与验证
 
